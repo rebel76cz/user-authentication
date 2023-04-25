@@ -1,6 +1,31 @@
 {block content}
 <h1>Administation</h1>
 
+{if $user->isLoggedIn()}
+    <p>Welcome {$user->getIdentity()->username}</p>
+{else}
+<p>You are not logged in.</p>
+{/if}
+
+
+
 <p>If you see this page, it means you have successfully logged in.</p>
 
+
+{if $user->isLoggedIn()}
 <p>(<a n:href="Sign:out">Sign out</a>)</p>
+{else}
+<p>(<a n:href="Sign:in">Sign in</a>)</p>
+{/if}
+y
+
+{if $user->isInrole('admin')}
+<p>Jsi role Admin</p>
+{elseif $user->isInRole('user')}
+<p>Jsi role User</p>
+{else}
+<p>Nemáš roli, jsi návštěvník</p>
+{/if}
+
+{/block}
+```
